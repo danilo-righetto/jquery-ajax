@@ -8,8 +8,8 @@ $(function() {
         // porem ele traz os dados no formato de Array
         // var formArray = $(this).serealizeArray();
 
-        console.log(form); // testando form
-        console.log(formArray); // testando formArray
+        //console.log(form); // testando form
+        //console.log(formArray); // testando formArray
 
         // usando o Ajax do JQuery
         var request = $.ajax({
@@ -34,7 +34,17 @@ $(function() {
         // e - variavel que vai receber os dados do request
         // always() - serve para executar uma ação quando houve sucesso do request
         request.always(function(e) {
-            console.log(e);
+            console.log("Always" + e);
+        });
+
+        // retorno de sucesso - Done
+        request.done(function(e) {
+            console.log("done" + e);
+        });
+
+        // Quando der algum erro - Fail()
+        request.fail(function(e) {
+            console.log("fail" + e);
         });
 
         // Impede a atualização da pagina         
