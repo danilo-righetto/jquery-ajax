@@ -15,6 +15,11 @@ $(function() {
             }
         });
 
+        // e - variavel que vai receber os dados do request
+        request.always(function(e) {
+            console.log(e);
+        });
+
         // Impede a atualização da pagina         
         return false;
     });
