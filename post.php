@@ -28,7 +28,13 @@ if ($_GET) {
 
 if ($_POST) {
     // exit; - para a execução de um script ou metodo
-    var_dump($_GET);exit;
+    //var_dump($_GET);exit;
+
+    // Manipulando dados
+    $_POST['name'] = $_POST['name']." DB";
+    $_POST['email'] = $_POST['email']." DB";
+    $_POST['tel'] = $_POST['tel']." DB";
+    json_encode($_POST);
 }
 
 
