@@ -1,4 +1,15 @@
 <?php
+
+// Quando você não sabe o metodo da requisição AJAX
+// podemos capturar a requisição e realizar um tratamento
+// usando o $_REQUEST
+if ($_REQUEST) {
+    // o $_REQUEST é executado toda vez que tiver 
+    // uma requisição, sendo qualquer requisição
+
+    echo json_encode(["msg"=>"Request"]);exit;
+}
+
 // testando a requisição pro PHP
 //echo "ok";
 if ($_GET) {

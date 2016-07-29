@@ -29,7 +29,7 @@ $(function() {
             /* Outra forma e pegar os dados usando data() */
 
             data: form, // ou formArray
-            datatype: "xml" // escolher o tipo do retorno
+            datatype: "json" // escolher o tipo do retorno
                 /* Se não retornarmos um XML ele vai dar erro */
         });
 
