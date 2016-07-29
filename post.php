@@ -51,8 +51,40 @@ if ($_POST) {
         json_encode(["status"=>false, "msg"=>"Digite um telefone"]);exit;
     }
 
-    json_encode(["status"=>true, "msg"=>"sucess"]);exit;
+    // mandando os dados no banco de dados
+    $id = save($_POST);
+    if ($id) {
+        json_encode(["status"=>true, "msg"=>"sucess"]);exit;
+    }else{
+        json_encode(["status"=>false, "msg"=>"Erro"]);exit;
+    }
+    
 }
 
+/* Para salvar dados no banco vamos criar atendendo as 
+informações abaixo: 
+banco: mysql 
+Schema: ajax_jquery 
+Table name: Contacts
+Coluns: id, name, email, tel
+*/
+
+// Conexão com o banco de dados
+function conn(){
+    $conn = new \PDO("mysql:host=localhost;dbname=ajax_jquery","root","root");
+    return $conn;
+}
+
+// Salvando dados no banco
+function save($data){
+    $db = conn();
+    $query = "Insert into `contacts` (`name`,`email`,`tel`) VALUES (:name, :email, :tel)";
+    $stmt = $db->prepare($query);
+    $stmt->bindValue(':name',$data['name']);
+    $stmt->bindValue(':email',$data['email']);
+    $stmt->bindValue(':tel',$data['tel']);
+    $stmt->execute();
+    return $db->lastInsertId();
+}
 
 ?>
