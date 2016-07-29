@@ -55,7 +55,8 @@ if ($_POST) {
     // mandando os dados no banco de dados
     $id = save($_POST);
     if ($id) {
-        json_encode(["status"=>true, "msg"=>"sucess"]);exit;
+        $data = find($id);
+        json_encode(["status"=>true, "msg"=>"sucess", "contacts"=>$data]);exit;
     }else{
         json_encode(["status"=>false, "msg"=>"Erro"]);exit;
     }
@@ -91,7 +92,7 @@ function save($data){
 // Função para listar todos os registros da tabela
 function listAll(){
     $db = conn();
-    $query = "select * from `contacts` order by id desc";
+    $query = "select * from `contacts` order by id DESC";
     //$query = "Insert into `contacts` (`name`,`email`,`tel`) VALUES (:name, :email, :tel)";
     $stmt = $db->prepare($query);
     //$stmt->bindValue(':name',$data['name']);
@@ -100,6 +101,15 @@ function listAll(){
     $stmt->execute();
     // retorna todos os resultados da Query
     return $stmt->fetchAll();
+}
+
+function find($id){
+    $db = conn();
+    $query = "select * from `contacts` where id=:id";
+    $stmt = $db->prepare($query);  
+    $stmt->bindValue(':id',$id);
+    $stmt->execute();
+    return $stmt->fetch(\PDO::FETCH_ASSOC);
 }
 
 

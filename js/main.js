@@ -20,7 +20,7 @@ $(function() {
             table += '<td>' + e[k].tel + '</td></tr>';
         }
         table += '</tbody>';
-        $('#contacts').html(table);// adiciona a tabela na pagina
+        $('#contacts').html(table); // adiciona a tabela na pagina
     });
 
 
@@ -73,6 +73,12 @@ $(function() {
                 $('#AjaxRequest').each(function() {
                     this.reset();
                 });
+
+                var table = '<tr><th scope="row">' + e.contacts.id + '</th>';
+                table += '<td>' + e.contacts.name + '</td>';
+                table += '<td>' + e.contacts.email + '</td>';
+                table += '<td>' + e.contacts.tel + '</td></tr>';
+                $('#contacts tbody').prepend(table); // adiciona a tabela na pagina
             }
 
             //for (var k in e) {
