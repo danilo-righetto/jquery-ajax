@@ -11,6 +11,16 @@ $(function() {
 
     requestList.done(function(e) {
         console.log("requestList Done: " + e);
+        var table = "<thead><tr><th>#</th><th>Name</th><th>Email</th><th>Telefone</th></tr></thead><tbody>";
+        for (var k in e) {
+            //Percorrendo os dados
+            table += '<tr><th scope="row">' + e[k].id + '</th>';
+            table += '<td>' + e[k].name + '</td>';
+            table += '<td>' + e[k].email + '</td>';
+            table += '<td>' + e[k].tel + '</td></tr>';
+        }
+        table += '</tbody>';
+        $('#contacts').html(table);// adiciona a tabela na pagina
     });
 
 

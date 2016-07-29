@@ -91,7 +91,7 @@ function save($data){
 // Função para listar todos os registros da tabela
 function listAll(){
     $db = conn();
-    $query = "select * from `contacts`";
+    $query = "select * from `contacts` order by id desc";
     //$query = "Insert into `contacts` (`name`,`email`,`tel`) VALUES (:name, :email, :tel)";
     $stmt = $db->prepare($query);
     //$stmt->bindValue(':name',$data['name']);
