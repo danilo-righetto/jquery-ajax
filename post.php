@@ -31,10 +31,27 @@ if ($_POST) {
     //var_dump($_GET);exit;
 
     // Manipulando dados
-    $_POST['name'] = $_POST['name']." DB";
-    $_POST['email'] = $_POST['email']." DB";
-    $_POST['tel'] = $_POST['tel']." DB";
-    json_encode($_POST);
+    //$_POST['name'] = $_POST['name']." DB";
+    //$_POST['email'] = $_POST['email']." DB";
+    //$_POST['tel'] = $_POST['tel']." DB";
+
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $tel = $_POST['tel'];
+
+    if ($name == "") {
+        json_encode(["status"=>false, "msg"=>"Digite um nome"]);exit;
+    }
+
+    if ($email == "") {
+        json_encode(["status"=>false, "msg"=>"Digite um email"]);exit;
+    }
+
+    if ($tel == "") {
+        json_encode(["status"=>false, "msg"=>"Digite um telefone"]);exit;
+    }
+
+    json_encode(["status"=>true, "msg"=>"sucess"]);exit;
 }
 
 

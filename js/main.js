@@ -42,10 +42,21 @@ $(function() {
         // retorno de sucesso - Done
         request.done(function(e) {
             console.log("done" + e);
-            for (var k in e) {
-                // Acessando o valor dos dados com for
-                $(':input[name=' + k + ']').val(e[k]);
+
+            $('#msg').html(e.msg);
+
+            if (e.status) {
+                $('#AjaxRequest').each(function() {
+                    this.reset();
+                });
             }
+
+            //for (var k in e) {
+            // Acessando o valor dos dados com for
+            // $(':input[name=' + k + ']').val(e[k]);
+            //}
+
+
         });
 
         // Quando der algum erro - Fail()
