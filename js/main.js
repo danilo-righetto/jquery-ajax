@@ -1,5 +1,19 @@
 /* Arquivo principal JS */
 $(function() {
+    /* Vamos criar uma requisição Ajax que vai listar os dados do banco */
+    var requestList = $.ajax({
+        method: "GET",
+        url: "post.php",
+        // precisamos mandar um valor para recuperar o GET
+        data: { listAll: "listAll" },
+        dataType: "json"
+    });
+
+    requestList.done(function(e) {
+        console.log("requestList Done: " + e);
+    });
+
+
     $('#AjaxRequest').submit(function() {
         // outra forma de recuperar todos dados do formulario
         var form = $(this).serealize();
@@ -29,7 +43,7 @@ $(function() {
             /* Outra forma e pegar os dados usando data() */
 
             data: form, // ou formArray
-            datatype: "json" // escolher o tipo do retorno
+            dataType: "json" // escolher o tipo do retorno
                 /* Se não retornarmos um XML ele vai dar erro */
         });
 

@@ -13,6 +13,7 @@ if ($_REQUEST) {
 // testando a requisição pro PHP
 //echo "ok";
 if ($_GET) {
+    $data = listAll();
     // ele para assim que ele mostrar o $_GET
     //var_dump($_GET);exit;
     // caso precisasemos pegar um valor do array
@@ -22,8 +23,8 @@ if ($_GET) {
     //header("HTTP / 1.0 404 Not Found");exit;
 
     //vamos retornar um XML
-    echo "<name>{$_GET[name]}</name>";
-    json_encode($_GET); //Caso precise retornar um JSON
+    //echo "<name>{$_GET[name]}</name>";
+    echo json_encode($data);exit; //Caso precise retornar um JSON
 }
 
 if ($_POST) {
@@ -86,5 +87,20 @@ function save($data){
     $stmt->execute();
     return $db->lastInsertId();
 }
+
+// Função para listar todos os registros da tabela
+function listAll(){
+    $db = conn();
+    $query = "select * from `contacts`";
+    //$query = "Insert into `contacts` (`name`,`email`,`tel`) VALUES (:name, :email, :tel)";
+    $stmt = $db->prepare($query);
+    //$stmt->bindValue(':name',$data['name']);
+    //$stmt->bindValue(':email',$data['email']);
+    //$stmt->bindValue(':tel',$data['tel']);
+    $stmt->execute();
+    // retorna todos os resultados da Query
+    return $stmt->fetchAll();
+}
+
 
 ?>
